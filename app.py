@@ -25,12 +25,11 @@ class InferlessPythonModel:
         response = requests.get(inputs.image_url)
         image = Image.open(BytesIO(response.content))
         
-        inputs = self.processor(images=image, return_tensors="pt")
+        model_inputs = self.processor(images=image, return_tensors="pt")
         
         # Perform inference
-        outputs = self.model(**inputs)
-        
-        return {"outputs": outputs }
+        model_outputs = self.model(**model_inputs)
+        return ResponseObjects(outputs=model_outputs)
 
     # perform any cleanup activity here
     def finalize(self,args):
