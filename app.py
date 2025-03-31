@@ -13,7 +13,8 @@ class RequestObjects(BaseModel):
 
 @inferless.response
 class ResponseObjects(BaseModel):
-    outputs: List[float] = Field(default=[-0.8563,  2.3687])
+    outputs: List[List[List[float]]] = Field(default=[])
+    
 
 
 class InferlessPythonModel:
