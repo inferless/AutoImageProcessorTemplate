@@ -5,6 +5,7 @@ from io import BytesIO
 from pydantic import BaseModel, Field
 from typing import List, Optional
 import inferless
+import torch
 
 @inferless.request
 class RequestObjects(BaseModel):
@@ -29,7 +30,8 @@ class InferlessPythonModel:
         
         # Perform inference
         model_outputs = self.model(**model_inputs)
-        return ResponseObjects(outputs=model_outputs)
+        output_list = [tensor.tolist() for tensor in model_outputs if tensor is not None]
+        return ResponseObjects(outputs=output_list)
 
     # perform any cleanup activity here
     def finalize(self,args):
