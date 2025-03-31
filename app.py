@@ -30,8 +30,8 @@ class InferlessPythonModel:
         
         # Perform inference
         model_outputs = self.model(**model_inputs)
-        output_list = [tensor.tolist() for tensor in model_outputs if tensor is not None]
-        return ResponseObjects(outputs=output_list)
+        # output_list = [tensor.tolist() for tensor in model_outputs if tensor is not None]
+        return ResponseObjects(outputs=model_outputs)
 
     # perform any cleanup activity here
     def finalize(self,args):
