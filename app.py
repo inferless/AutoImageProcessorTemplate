@@ -21,8 +21,8 @@ class InferlessPythonModel:
         self.processor = AutoImageProcessor.from_pretrained("histai/hibou-L", trust_remote_code=True)
         self.model = AutoModel.from_pretrained("histai/hibou-L", trust_remote_code=True)
 
-    def infer(self, inputs):
-        response = requests.get(inputs["image_url"])
+    def infer(self, inputs: RequestObjects) -> ResponseObjects:
+        response = requests.get(inputs.image_url)
         image = Image.open(BytesIO(response.content))
         
         inputs = self.processor(images=image, return_tensors="pt")
