@@ -30,7 +30,13 @@ class InferlessPythonModel:
         
         # Perform inference
         model_outputs = self.model(**model_inputs)
-        output_list = [tensor.tolist() for tensor in model_outputs if tensor is not None]
+        
+        # Extract last_hidden_state and convert to list
+        if hasattr(model_outputs, "last_hidden_state") and isinstance(model_outputs.last_hidden_state, torch.Tensor):
+            output_list = model_outputs.last_hidden_state.tolist()
+        else:
+            output_list = []  # Handle the case where last_hidden_state is missing
+        
         return ResponseObjects(outputs=output_list)
 
     # perform any cleanup activity here
