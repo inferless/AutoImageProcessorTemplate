@@ -6,6 +6,8 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 import inferless
 import torch
+import json
+
 
 @inferless.request
 class RequestObjects(BaseModel):
@@ -13,7 +15,7 @@ class RequestObjects(BaseModel):
 
 @inferless.response
 class ResponseObjects(BaseModel):
-    outputs: List[List[List[float]]] = Field(default=[])
+    outputs: str = Field(default="")
     
 
 
@@ -38,7 +40,7 @@ class InferlessPythonModel:
         else:
             output_list = []  # Handle the case where last_hidden_state is missing
         
-        return ResponseObjects(outputs=output_list)
+        return ResponseObjects(outputs=json.dumps(output_list))
 
     # perform any cleanup activity here
     def finalize(self,args):
