@@ -33,4 +33,4 @@ class InferlessPythonModel:
         return ResponseObjects(outputs=json.dumps(output_list))
 
     def finalize(self,args):
-        self.pipe = None
+        self.model = None
