@@ -1,4 +1,4 @@
-# Tutorial - Deploy Hibou-L using Inferless
+# Deploy Hibou-L using Inferless
 Hibou-L is a foundational Vision Transformer built to extract image features, with a specialized focus on digital pathology applications.
 Developed using the DINOv2 framework, it has been pretrained on a private dataset comprising 1.2 billion images, encompassing a diverse range of tissue types and staining techniques.
 
